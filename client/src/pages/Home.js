@@ -5,12 +5,8 @@ import API from "../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { Input, TextArea, FormBtn } from "../components/Form";
-import mountainPic from "../Assets/images/mountainCarpool.jpeg"
 
 function Home() {
-  useEffect(() => {
-    console.log(API)
-  })
 
     return (
       <Container fluid>
@@ -22,7 +18,38 @@ function Home() {
           <Col size="md-10">
             <Row>
               <Col size="md-6">
-
+                <Row>
+                  <div className="card">
+                    <Row>
+                      <div className="card-header">
+                        Available Resorts
+                      </div>
+                    </Row>
+                    <Row>
+                      <Col size="md-6">
+                        <ul className="list-group list-group-flush">
+                          <a href="https://www.google.com"><li className="list-group-item">A-Basin</li></a>
+                          <li className="list-group-item">Aspen</li>
+                          <li className="list-group-item">Beaver Creek</li>
+                          <li className="list-group-item">Breckenridge</li>
+                          <li className="list-group-item">Copper Mountain</li>
+                          <li className="list-group-item">Crested Butte</li>
+                          <li className="list-group-item">Eldora</li>
+                        </ul>
+                      </Col>
+                      <Col size="md-6">
+                        <ul className="list-group list-group-flush">
+                          <li className="list-group-item">Keystone</li>
+                          <li className="list-group-item">Loveland</li>
+                          <li className="list-group-item">Steamboat</li>
+                          <li className="list-group-item">Telluride</li>
+                          <li className="list-group-item">Vail</li>
+                          <li className="list-group-item">Winter Park</li>
+                        </ul>
+                      </Col>
+                    </Row>
+                  </div>
+                </Row>
               </Col>
             </Row>
             <Row>
