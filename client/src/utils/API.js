@@ -2,8 +2,8 @@ import axios from "axios";
 
 export default {
   // Gets all books
-  getMountains: function() {
-    return axios.get("http://api.worldweatheronline.com/premium/v1/ski.ashx?key=12f65e292c304598b2015425212005&q=47.12,13.13&format=json");
+  getMountains: function(city) {
+    return axios.get("api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=9057e02af26cff387f193be4d1eee3ae");
   },
   // Gets the book with the given id
   getBook: function(id) {

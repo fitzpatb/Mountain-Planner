@@ -2,11 +2,17 @@ import React, { useState, useEffect } from "react";
 import DeleteBtn from "../components/DeleteBtn";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
+import DeveloperContext from "../utils/DeveloperContext";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { Input, TextArea, FormBtn } from "../components/Form";
 
-function Home() {
+function Home(props) {
+
+
+
+
+
 
     return (
       <Container fluid>
@@ -28,8 +34,11 @@ function Home() {
                     <Row>
                       <Col size="md-6">
                         <ul className="list-group list-group-flush">
-                          <a href="https://www.google.com"><li className="list-group-item">A-Basin</li></a>
-                          <li className="list-group-item">Aspen</li>
+                          <li className="list-group-item"><button value="Arrapahoe Basin" onClick={props.handleCity}>A-Basin</button></li>
+                          <li className="list-group-item"
+                          onClick={props.handleCity}
+                          name="Aspen"
+                          >Aspen</li>
                           <li className="list-group-item">Beaver Creek</li>
                           <li className="list-group-item">Breckenridge</li>
                           <li className="list-group-item">Copper Mountain</li>
