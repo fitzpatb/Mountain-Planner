@@ -3,7 +3,8 @@ const Schema = mongoose.Schema;
 
 const CarSchema = new Schema({
   driver: {
-    type:
+    type: String,
+    required: true
   },
   make: {
     type: String,

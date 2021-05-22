@@ -7,7 +7,8 @@ const userSchema = new Schema({
     required: true
   },
   email: {
-
+    type: String,
+    required: true
   }
   car: {
     type: Schema.Types.ObjectId,

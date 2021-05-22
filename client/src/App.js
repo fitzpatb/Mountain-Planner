@@ -13,16 +13,6 @@ function App() {
     user: ""
   });
 
-  function handleCity(event) {
-    event.preventDefault();
-    const query = event.target.value;
-    setDeveloperState({
-      ...developerState,
-      city: query
-    });
-    console.log(developerState.city)
-    document.location.replace("/mountain");
-  }
 
   return (
     <DeveloperContext.Provider value={developerState}>
@@ -32,11 +22,11 @@ function App() {
           <Switch>
             <Route exact path="/">
               <Home
-                handleCity={handleCity}
+                //handleCity={handleCity}
               />
             </Route>
             <Route exact path="/mountain">
-              <Mountain developerState={developerState}/>
+              <Mountain />
             </Route>
             <Route>
               <NoMatch />
