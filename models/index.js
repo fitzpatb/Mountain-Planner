@@ -1,3 +1,4 @@
 module.exports = {
-  Mountains: require('./mountains')
+  Mountains: require('./mountains'),
+  Users: require('./users')
 };
