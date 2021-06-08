@@ -3,7 +3,7 @@ import { Col, Row, Container } from "../components/Grid";
 //import { Link } from "react-router-dom";
 import API from "../utils/API";
 
-function Signup() {
+function Signup(props) {
   const firstnameRef = useRef();
   const lastnameRef = useRef();
   const usernameRef = useRef();
@@ -23,7 +23,17 @@ function Signup() {
     API.signup(firstnameRef.current.value, lastnameRef.current.value, usernameRef.current.value, emailRef.current.value, passwordRef.current.value)
         .then(response => {
             setError(null);
-            console.log(response);
+            console.log(response.data)
+            let currentUser = {
+              firstname: response.data.user.firstname,
+              lastname: response.data.user.lastname,
+              username: response.data.user.username,
+              email: response.data.user.email
+            }
+            console.log(currentUser);
+
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            props.handleLogin(response.data.isLoggedIn);
         })
         .catch(err => {
             if (!err.response) {

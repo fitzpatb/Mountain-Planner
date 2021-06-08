@@ -10,7 +10,12 @@ module.exports = {
       password: req.body.password
     }
     db.Users.create(userInfo)
-      .then(user => res.json(user))
+      .then(user => {
+        res.json({
+          user: user,
+          isLoggedIn: true
+        })
+      })
       .catch(err => {
         console.log(err)
       });

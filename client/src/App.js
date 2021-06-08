@@ -13,7 +13,7 @@ function App() {
   const [lat, setLat] = useState("");
   const [lon, setLon] = useState("");
   const [city, setCity] = useState("")
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState();
   const [userInfo, setUserInfo] = useState({
     firstname: "",
     lastname: "",
@@ -41,6 +41,7 @@ function App() {
   }
 
   function handleLogin(boolean) {
+    console.log(boolean)
     if (boolean === true) {
       setLoggedIn(true)
     } else {
@@ -80,6 +81,7 @@ function App() {
           </Route>
           <Route path="/signup">
             <Signup
+              handleLogin={handleLogin}
             />
           </Route>
           <Route path="/profile">

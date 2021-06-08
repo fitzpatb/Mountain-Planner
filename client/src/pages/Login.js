@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { Col, Row, Container } from "../components/Grid";
 import { Link, Redirect } from "react-router-dom";
 import API from "../utils/API";
@@ -6,6 +6,10 @@ import API from "../utils/API";
 
 function Login(props) {
 
+  useEffect(() => {
+    const status = props.loggedIn;
+    console.log(status);
+  }, [])
 
   const usernameRef = useRef();
   const passwordRef = useRef();
@@ -40,7 +44,7 @@ function Login(props) {
   }
   if (props.loggedIn === true) {
     return (
-      <Redirect to={ {pathname: "/"} } />
+      <Redirect to={ {pathname: "/profile"} } />
     )
   } else {
     return (
