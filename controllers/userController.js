@@ -1,7 +1,9 @@
 const db = require("../models");
+const bcrypt = require("bcryptjs");
 
 module.exports = {
   signup: function(req, res) {
+    req.body.password = bcrypt.hashSync(req.body.password, 10)
     const userInfo = {
       firstname: req.body.firstname,
       lastname: req.body.lastname,
@@ -11,6 +13,7 @@ module.exports = {
     }
     db.Users.create(userInfo)
       .then(user => {
+        console.log(user)
         res.json({
           user: user,
           isLoggedIn: true

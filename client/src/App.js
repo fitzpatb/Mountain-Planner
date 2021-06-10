@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Mountain from "./pages/Mountain";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import Logout from "./pages/Logout";
 import Nav from "./components/Nav";
 import Profile from "./pages/Profile";
 import Car from "./pages/Car";
@@ -52,13 +53,16 @@ function App() {
 
   function handleLogout() {
     setLoggedIn(false);
+    localStorage.clear();
   }
 
   return (
     <Router>
     {(lat.length > 0 && lon.length > 0) ?  <Redirect to="/mountain" />: ""}
       <div>
-        <Nav />
+        <Nav
+          loggedIn={loggedIn}
+        />
         <Switch>
           <Route exact path="/">
             <Home
@@ -82,6 +86,12 @@ function App() {
           <Route path="/signup">
             <Signup
               handleLogin={handleLogin}
+            />
+          </Route>
+          <Route path="/logout">
+            <Logout
+              loggedIn={loggedIn}
+              handleLogout={handleLogout}
             />
           </Route>
           <Route path="/profile">

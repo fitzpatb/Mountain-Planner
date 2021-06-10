@@ -11,11 +11,13 @@ passport.use(new LocalStrategy(
       if (!user) {
         return done(null, false, { message: 'Incorrect username' });
       }
-      if (!user.verifyPassword(password)) {
-        return done(null, false, { message: 'Incorrect password' });
-      }
-      return done(null, user);
-    });
+      user.verifyPassword(password).then(() => {
+        return done(null, user)
+      }).catch((err) => {
+        return done(err, false, { message: "password not matched"})
+      })
+
+    })
   }
 
 ));

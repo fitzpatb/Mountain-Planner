@@ -1,6 +1,6 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { Col, Row, Container } from "../components/Grid";
-//import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import API from "../utils/API";
 
 function Signup(props) {
@@ -11,6 +11,9 @@ function Signup(props) {
   const passwordRef = useRef();
 
   const [error, setError] = useState(null);
+
+  const history = useHistory();
+
   const handleSubmit = event => {
     event.preventDefault();
 
@@ -34,6 +37,7 @@ function Signup(props) {
 
             localStorage.setItem('currentUser', JSON.stringify(currentUser));
             props.handleLogin(response.data.isLoggedIn);
+            history.push("/car");
         })
         .catch(err => {
             if (!err.response) {

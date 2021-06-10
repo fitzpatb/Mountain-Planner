@@ -27,6 +27,13 @@ function Login(props) {
     API.login(usernameRef.current.value, passwordRef.current.value)
         .then(response => {
             console.log(response.data.isLoggedIn);
+            let currentUser = {
+              firstname: response.data.user.firstname,
+              lastname: response.data.user.lastname,
+              username: response.data.user.username,
+              email: response.data.user.email
+            }
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
             props.handleLogin(response.data.isLoggedIn);
         })
         .catch(err => {

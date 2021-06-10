@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
-const Schema = mongoose.Schema
+const Schema = mongoose.Schema;
+const bcrypt = require("bcryptjs");
+
 
 const userSchema = new Schema({
   firstname: {
@@ -28,15 +30,21 @@ const userSchema = new Schema({
     type: String,
     trim: true,
     required: true
-  },
+  }
 })
 
-userSchema.methods.verifyPassword = async function verifyPassword(password) {
-  if (this.password === password) {
-    return true;
-  } else {
-    return false;
-  }
+userSchema.methods.verifyPassword = function verifyPassword(password) {
+  console.log(password)
+  console.log(this.password)
+  return new Promise((resolve, reject) => {
+    bcrypt.compareSync(password, this.password, (err, result) => {
+      if (err) {reject(err)}
+      resolve()
+    })
+  })
+  //let result = await bcrypt.compareSync(password, this.password);
+  //console.log(result)
+  //return result;
 }
 
 const Users = mongoose.model("Users", userSchema);
