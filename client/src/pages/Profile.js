@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Col, Row, Container } from "../components/Grid";
+import API from "../utils/API";
+import { Link } from "react-router-dom";
+import { DateUtils } from "react-day-picker";
 
 function Profile( props) {
   const [profile, setProfile] = useState({
@@ -15,6 +18,7 @@ function Profile( props) {
     year: "",
     seats: "",
   })
+  const [allTrips, setAllTrips] = useState([]);
 
   useEffect(() => {
     const userProfile = JSON.parse(localStorage.getItem("currentUser"));
@@ -23,8 +27,67 @@ function Profile( props) {
       last: userProfile.lastname,
       username: userProfile.username,
       email: userProfile.email
-    })
+    });
+    handleCar(userProfile);
+    handleTrips();
   }, []);
+
+  const handleCar = ((userProfile) => {
+    console.log(userProfile.username)
+    const username = userProfile.username
+    API.findUserCar(username)
+      .then(response => {
+        console.log(response)
+        for (let i = 0; i < response.data.userCar.length; i++) {
+          if (response.data.userCar[i].username === username) {
+            setCar({
+              make: response.data.userCar[i].make,
+              model: response.data.userCar[i].model,
+              year: response.data.userCar[i].year,
+              color: response.data.userCar[i].color,
+              seats: response.data.userCar[i].seats
+            })
+          }
+        }
+
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  })
+
+  const handleTrips = (async () => {
+    let tripsArray = [];
+    await API.findAllTrips()
+      .then(response => {
+        console.log(response);
+        const format = new Date(response.data.trips[0].date);
+        console.log(format.toLocaleDateString);
+        for (let i = 0; i < response.data.trips.length; i++) {
+
+          console.log(response.data.trips[i]);
+          tripsArray.push(response.data.trips[i]);
+        }
+        setAllTrips(tripsArray);
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  })
+
+  const handleJoin = (event) => {
+    event.preventDefault();
+    console.log(event.target.value);
+    console.log(profile.username)
+    API.joinTrip(event.target.value, profile.username)
+      .then(response => {
+        console.log(response)
+        handleTrips();
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
 
   return (
     <Container fluid>
@@ -110,7 +173,47 @@ function Profile( props) {
           </div>
         </Col>
         <Col size="6">
+          <div className="card">
+            <Row>
+              <div className="card-header">
+                Upcoming Trips
+              </div>
+            </Row>
+            <Row>
+              <div className="card-body">
+                <ul>
+                {allTrips.map((trip, index) => {
+                  const formatDate = new Date(trip.date);
+                  console.log(formatDate.toLocaleDateString());
+                  const correctDate = formatDate.toLocaleDateString();
+                  console.log(trip.passengers);
+                  let riders;
+                  if (trip.passengers === null) {
+                    riders = "No Passengers"
+                  } else  if (trip.passengers.length === 0) {
+                    riders = "No Passengers"
+                  } else {
+                    riders = trip.passengers;
+                  }
+                  return(
+                    <div key={index}>
+                      <li>{trip.driver}, {trip.mountain}, {correctDate}, Available Seats {trip.seats}</li>
 
+                      <ul>
+                        <li>{riders}</li>
+                      </ul>
+                      <button value={trip._id} className="btn btn-secondary" onClick={handleJoin}>Join trip</button>
+                    </div>
+                  )
+                })}
+                </ul>
+
+              </div>
+              <div className="card-footer">
+                <Link to="/day">Book a trip</Link>
+              </div>
+            </Row>
+          </div>
         </Col>
       </Row>
     </Container>

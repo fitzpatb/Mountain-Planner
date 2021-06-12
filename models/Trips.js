@@ -3,13 +3,13 @@ const Schema = mongoose.Schema;
 
 const TripSchema = new Schema({
   driver: {
-    type: Schema.Types.ObjectId,
-    ref: "Users"
+    type: String,
+    required: true
   },
   passengers: [
     {
-      type: Schema.Types.ObjectId,
-      ref: "Users"
+      type: String,
+      required: false
     }
   ],
   mountain: {
@@ -25,3 +25,8 @@ const TripSchema = new Schema({
     required: true
   }
 })
+
+
+const Trips = mongoose.model("Trips", TripSchema);
+
+module.exports = Trips;

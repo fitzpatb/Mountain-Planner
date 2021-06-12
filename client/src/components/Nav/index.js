@@ -14,10 +14,10 @@ function Nav(props) {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item active">
-              <Link className="nav-link" to="/">Home</Link>
+              <Link className="nav-link" to="/" onClick={props.resetCity}>Home</Link>
             </li>
             <li className="nav-item active">
-              <Link className="nav-link" to="/login">Login</Link>
+              <Link className="nav-link" to="/login" onClick={props.resetCity}>Login</Link>
             </li>
           </ul>
         </div>
@@ -32,13 +32,13 @@ function Nav(props) {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item active">
-              <Link className="nav-link" to="/">Home</Link>
+              <Link className="nav-link" to="/" onClick={props.resetCity}>Home</Link>
             </li>
             <li className="nav-item active">
-              <Link className="nav-link" to="/logout" >Logout</Link>
+              <Link className="nav-link" to="/logout" onClick={props.resetCity}>Logout</Link>
             </li>
             <li className="nav-item active">
-              <Link className="nav-link" to="/profile">Profile</Link>
+              <Link className="nav-link" to="/profile" onClick={props.resetCity}>Profile</Link>
             </li>
           </ul>
         </div>

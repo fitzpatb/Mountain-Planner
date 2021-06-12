@@ -36,15 +36,16 @@ const userSchema = new Schema({
 userSchema.methods.verifyPassword = function verifyPassword(password) {
   console.log(password)
   console.log(this.password)
-  return new Promise((resolve, reject) => {
-    bcrypt.compareSync(password, this.password, (err, result) => {
-      if (err) {reject(err)}
-      resolve()
-    })
-  })
-  //let result = await bcrypt.compareSync(password, this.password);
-  //console.log(result)
-  //return result;
+  // return new Promise((resolve, reject) => {
+  //   bcrypt.compareSync(this.password, password, (err, result) => {
+  //     if (err) {reject(err)}
+  //     //resolve()
+  //     if result ===
+  //   })
+  // })
+  let result = bcrypt.compareSync(password, this.password);
+  console.log(result)
+  return result;
 }
 
 const Users = mongoose.model("Users", userSchema);

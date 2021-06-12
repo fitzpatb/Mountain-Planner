@@ -16,8 +16,10 @@ function Car() {
     event.preventDefault();
     const user = JSON.parse(localStorage.getItem("currentUser"));
     console.log(user.username);
+    console.log(modelRef.current.value)
 
-    API.signupCar(user.username, modelRef.current.value, yearRef.current.value, colorRef.current.value, seatsRef.current.value)
+
+    API.signupCar(user.username, makeRef.current.value, modelRef.current.value, yearRef.current.value, colorRef.current.value, seatsRef.current.value)
       .then(response => {
         console.log(response)
         let currentCar = {

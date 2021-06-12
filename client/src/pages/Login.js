@@ -34,6 +34,7 @@ function Login(props) {
               email: response.data.user.email
             }
             localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            localStorage.setItem('isLoggedIn', JSON.stringify(response.data.isLoggedIn));
             props.handleLogin(response.data.isLoggedIn);
         })
         .catch(err => {

@@ -5,13 +5,18 @@ export default {
   getWeather: function(city) {
     return axios.get("api.openweathermap.org/data/2.5/forecast?q=" + city + ",co&appid=9057e02af26cff387f193be4d1eee3ae");
   },
-  // Gets the book with the given id
-  getMountains: function() {
-    return axios.get("/api/mountains");
+
+  bookTrip: function(username, mountain, date, seats) {
+    return axios.post("/api/trips/book", { username, mountain, date, seats });
   },
-  // Deletes the book with the given id
-  deleteBook: function(id) {
-    return axios.delete("/api/books/" + id);
+  findAllTrips: function() {
+    return axios.get("/api/trips/all");
+  },
+  findUserCar: function() {
+    return axios.get("/api/cars/usercar");
+  },
+  joinTrip: function(id, username) {
+    return axios.put("/api/trips/" + id, {username: username})
   },
   // Saves a book to the database
   signupCar: function(username, make, model, year, color, seats) {

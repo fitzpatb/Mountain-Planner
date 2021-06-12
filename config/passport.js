@@ -11,11 +11,23 @@ passport.use(new LocalStrategy(
       if (!user) {
         return done(null, false, { message: 'Incorrect username' });
       }
-      user.verifyPassword(password).then(() => {
-        return done(null, user)
-      }).catch((err) => {
-        return done(err, false, { message: "password not matched"})
-      })
+      try {
+        const login = user.verifyPassword(password)
+        console.log(login);
+        if (login) {
+         return done(null, user, {message: "successful login"});
+        } else {
+          return done(null, false, {message: "invalid password"});
+        }
+      } catch (err) {
+        console.log("something wrong on backend");
+      }
+      //   .then((response) => {
+      //   console.log("line 15", response);
+      //   return done(null, user)
+      // }).catch((er) => {
+      //   return done(er)
+      // })
 
     })
   }

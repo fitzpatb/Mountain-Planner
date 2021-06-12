@@ -7,6 +7,7 @@ import Signup from "./pages/Signup";
 import Logout from "./pages/Logout";
 import Nav from "./components/Nav";
 import Profile from "./pages/Profile";
+import Day from "./pages/Day";
 import Car from "./pages/Car";
 //import Wrapper from "./components/Wrapper";
 
@@ -61,6 +62,7 @@ function App() {
     {(lat.length > 0 && lon.length > 0) ?  <Redirect to="/mountain" />: ""}
       <div>
         <Nav
+          resetCity={resetCity}
           loggedIn={loggedIn}
         />
         <Switch>
@@ -95,10 +97,15 @@ function App() {
             />
           </Route>
           <Route path="/profile">
-            <Profile/>
+            <Profile
+              handleCity={handleCity}
+            />
           </Route>
           <Route path="/car">
             <Car />
+          </Route>
+          <Route path="/day">
+            <Day />
           </Route>
         </Switch>
       </div>

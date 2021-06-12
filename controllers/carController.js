@@ -12,7 +12,7 @@ module.exports = {
       color: req.body.color,
       seats: req.body.seats
     }
-    db.Car.create(carInfo)
+    db.Cars.create(carInfo)
       .then(car => {
         console.log(car)
         res.json({car: car})
@@ -22,9 +22,10 @@ module.exports = {
       });
   },
   findUserCar: function(req, res) {
-    db.Car
-      .find({ where: {username: req.body.username}})
-      .then(userCar => res.json(userCar))
+    db.Cars.find()
+      .then(userCar => {
+        res.json({userCar: userCar})
+      })
       .catch(err => res.status(422).json(err));
   },
   findById: function(req, res) {
