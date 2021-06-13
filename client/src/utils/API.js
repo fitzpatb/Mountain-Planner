@@ -16,6 +16,12 @@ export default {
     return axios.get("/api/cars/usercar");
   },
   joinTrip: function(id, username) {
+    return axios.post("/api/trips/" + id, {username: username})
+  },
+  deleteTrip: function(id) {
+    return axios.delete("/api/trips/" + id)
+  },
+  removePassenger: function(id, username) {
     return axios.put("/api/trips/" + id, {username: username})
   },
   // Saves a book to the database
@@ -28,6 +34,8 @@ export default {
   signup: function(firstname, lastname, username, email, password) {
     return axios.post("/api/users/signup", { firstname, lastname, username, email, password});
   },
-
+  findUser: function() {
+    return axios.get("/api/users/driver")
+  }
 
 };

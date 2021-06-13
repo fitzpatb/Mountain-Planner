@@ -11,6 +11,6 @@ router.post('/login', passport.authenticate('local', { failureRedirect: '/login'
   })
 }, userController.login);
 router.post("/signup", userController.signup);
-router.get("/one", userController.getUser);
+router.get("/driver", userController.findUser);
 
 module.exports = router;

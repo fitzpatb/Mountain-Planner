@@ -46,7 +46,7 @@ module.exports = {
           res.status(403).end()
         } else {
           available = trip.seats - 1;
-          db.Trips.findByIdAndUpdate({_id: req.params.id},{passengers: req.body.username, seats: available}, function (error, success) {
+          db.Trips.findByIdAndUpdate({_id: req.params.id},{ seats: available, $push: {passengers: req.body.username}}, function (error, success) {
             if (error) {
               console.log(error)
             } else {
@@ -55,7 +55,33 @@ module.exports = {
           });
         }
       })
+      .catch(err => {
+        console.log(err)
+      });
 
+  },
+  deleteTrip: function(req, res) {
+    console.log(req.params.id)
+    db.Trips.findByIdAndDelete(req.params.id)
+      .then(() => {
+        console.log("success")
+      })
+      .catch(err => {
+        console.log(err)
+      });
+  },
+  removePassenger: function(req, res) {
+    console.log(req.params.id)
+    console.log(req.body.username)
+    db.Trips.findByIdAndUpdate(req.params.id, {
+      $inc: {seats: 1},
+      $pull: {passengers: req.body.username}}, function (error, success) {
+      if (error) {
+        console.log(error)
+      } else {
+        console.log(success)
+      }
+    });
   }
 
   // findTrips: function(req, res) {

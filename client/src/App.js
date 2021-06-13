@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import Home from "./pages/Home";
 import Mountain from "./pages/Mountain";
@@ -22,6 +22,16 @@ function App() {
     username: "",
     email: "",
   });
+
+  useEffect(() => {
+    const userProfile = JSON.parse(localStorage.getItem("currentUser"));
+    console.log(userProfile)
+    if (userProfile) {
+      setLoggedIn(true)
+    } else {
+      setLoggedIn(false)
+    }
+  }, [])
 
   function handleCity(event) {
     event.preventDefault();

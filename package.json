@@ -42,6 +42,8 @@
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "react-day-picker": "^7.4.10",
-    "react-script-tag": "^1.1.2"
+    "react-script-tag": "^1.1.2",
+    "react-bootstrap": "^1.6.0",
+    "react-dom": "^17.0.2"
   }
 }

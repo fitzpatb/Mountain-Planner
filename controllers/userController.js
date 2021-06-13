@@ -40,7 +40,15 @@ module.exports = {
       res.status(401).end();
     }
   },
-
+  findUser: function(req, res) {
+    db.Users.find()
+      .then(response => {
+        res.json(response)
+      })
+      .catch(err => {
+        console.log(err)
+      });
+  }
 
 }
 
