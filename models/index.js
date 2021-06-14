@@ -1,5 +1,5 @@
 module.exports = {
-  Cars: require('./car'),
+  Cars: require('./Car'),
   Mountains: require('./mountains'),
   Users: require('./users'),
   Trips: require('./trips')
