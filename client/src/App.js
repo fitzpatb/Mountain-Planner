@@ -8,7 +8,7 @@ import Logout from "./pages/Logout";
 import Nav from "./components/Nav";
 import Profile from "./pages/Profile";
 import Day from "./pages/Day";
-import Car from "./pages/Car";
+import Caradd from "./pages/Caradd";
 //import Wrapper from "./components/Wrapper";
 
 function App() {
@@ -107,7 +107,7 @@ function App() {
             />
           </Route>
           <Route path="/car">
-            <Car />
+            <Caradd />
           </Route>
           <Route path="/day">
             <Day />

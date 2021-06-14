@@ -3,7 +3,7 @@ import {Container } from "../components/Grid";
 import {useHistory } from "react-router-dom";
 import API from "../utils/API";
 
-function Car() {
+function Caradd() {
   const makeRef = useRef();
   const modelRef = useRef();
   const yearRef = useRef();
@@ -82,4 +82,4 @@ function Car() {
   )
 }
 
-export default Car;
+export default Caradd;
