@@ -26,7 +26,7 @@
   "homepage": "https://github.com/fitzpatb/Mountain-Planner#readme",
   "devDependencies": {
     "concurrently": "^6.1.0",
-    "nodemon": "^1.18.7"
+    "nodemon": "^2.0.7"
   },
   "dependencies": {
     "axios": "^0.21.1",
@@ -44,8 +44,8 @@
     "react-aws-s3": "^1.5.0",
     "react-bootstrap": "^1.6.0",
     "react-day-picker": "^7.4.10",
-    "react-router-dom": "^5.1.2",
     "react-dom": "^17.0.2",
+    "react-router-dom": "^5.2.0",
     "react-script-tag": "^1.1.2"
   }
 }
