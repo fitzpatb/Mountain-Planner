@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
-import { Col, Row, Container } from "../components/Grid";
-import { Link, useHistory } from "react-router-dom";
+import {Container } from "../components/Grid";
+import {useHistory } from "react-router-dom";
 import API from "../utils/API";
 
 function Car() {
@@ -39,9 +39,9 @@ function Car() {
   }
 
   return(
-    <Container fluid>
-      <Row>
-        <Col size="md-10" className="rounded border border-secondary">
+    <div className="margin-pages">
+      <Container fluid>
+        <div className="card col-6" style={{margin: "0 auto"}}>
           <h2>Car Information</h2>
 
           <form className="form car-form">
@@ -75,9 +75,10 @@ function Car() {
               <button className="btn btn-secondary" onClick={event => handleSubmit(event)}>Submit</button>
             </div>
           </form>
-        </Col>
-      </Row>
-    </Container>
+        </div>
+      </Container>
+    </div>
+
   )
 }
 

@@ -1,6 +1,63 @@
+body {
+  background-image: url("./Assets/images//Download-Snow-Covered-Evergreen-Trees-Wallpaper-1920x1080-.jpeg");
+  background-size: cover;
+}
+
+.home {
+  background-color: white;
+}
+
 .jumbotron {
   background-image: url("./Assets/images/mountainCarpool.jpeg");
   background-size: cover;
   color: White;
 
+}
+.jumbotron > h1, .jumbotron p {
+  text-shadow: 4px 1px 1px black;
+}
+
+#driving-trips {
+
+}
+
+#passenger-trips {
+
+
+}
+
+.margin-pages {
+  margin-top: 20px;
+}
+
+img {
+  max-height: 80%;
+  max-width: 80%;
+  margin: 0 auto;
+  margin-top: 15px;
+}
+
+.card {
+  margin-top: 15px;
+}
+
+.user-trips {
+  font-size: 40px;
+  text-align: center;
+  font-weight: bold;
+  font-style: italic;
+  text-shadow: 4px 1px 1px gray;
+}
+
+li {
+  margin-left: 10px;
+}
+
+button {
+  margin-right: 10px;
+}
+#lot-link {
+  font-size: 20px;
+  color: white;
+  text-shadow: 4px 1px 1px black;
 }

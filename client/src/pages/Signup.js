@@ -1,5 +1,5 @@
-import React, { useRef, useState, useEffect } from "react";
-import { Col, Row, Container } from "../components/Grid";
+import React, { useRef } from "react";
+import { Container } from "../components/Grid";
 import { useHistory } from "react-router-dom";
 import API from "../utils/API";
 
@@ -10,7 +10,7 @@ function Signup(props) {
   const emailRef = useRef();
   const passwordRef = useRef();
 
-  const [error, setError] = useState(null);
+
 
   const history = useHistory();
 
@@ -18,14 +18,12 @@ function Signup(props) {
     event.preventDefault();
 
     if (!usernameRef.current.value || !emailRef.current.value || !passwordRef.current.value) {
-        setError("Missing a required field.");
         passwordRef.current.value = "";
         return;
     }
 
     API.signup(firstnameRef.current.value, lastnameRef.current.value, usernameRef.current.value, emailRef.current.value, passwordRef.current.value)
         .then(response => {
-            setError(null);
             console.log(response.data)
             let currentUser = {
               firstname: response.data.user.firstname,
@@ -40,24 +38,15 @@ function Signup(props) {
             history.push("/car");
         })
         .catch(err => {
-            if (!err.response) {
-                setError("Unable to connect to the server.");
-            } else if (err.response.data === "SequelizeValidationError") {
-                setError("Please enter a valid email address.");
-            } else if (err.response.data === "SequelizeUniqueConstraintError") {
-                setError("This email address is already associated with an account.");
-            } else {
-                setError("An unknown error occurred.");
-            }
             passwordRef.current.value = "";
             console.log(err);
         })
 }
 
   return (
-    <Container fluid>
-      <Row>
-        <Col size="md-10" className="rounded border border-secondary">
+    <div className="margin-pages">
+      <Container fluid>
+        <div className="card col-6" style={{margin: "0 auto"}}>
           <h2>Signup</h2>
 
           <form className="form signup-form">
@@ -85,9 +74,10 @@ function Signup(props) {
               <button className="btn btn-secondary" type="submit" onClick={event => handleSubmit(event)} >Signup</button>
             </div>
           </form>
-        </Col>
-      </Row>
-    </Container>
+        </div>
+      </Container>
+    </div>
+
   )
 }
 

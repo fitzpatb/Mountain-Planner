@@ -3,23 +3,16 @@ import { DateUtils } from "react-day-picker";
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
 import { useHistory } from "react-router-dom";
-import { Col, Row, Container } from "../components/Grid";
+import { Container } from "../components/Grid";
 import API from "../utils/API";
 
 function Day() {
-  const [car, setCar] = useState({
-    make: "",
-    model: "",
-    year: "",
-    color: "",
-    seats: ""
-  });
+
   const [selectedDay, setSelectedDay] = useState(undefined);
   const [mountain, setMountain] = useState("");
 
   const history = useHistory();
 
-  const mountainRef = useRef();
 
   useEffect(() => {
     storeCar()
@@ -96,41 +89,40 @@ function Day() {
   }
 
   return (
-    <Container fluid>
-        <Row>
-          <Col size="md-10" className="rounded border border-secondary">
-            <h2>Plan a trip</h2>
+    <div className="margin-pages">
+      <Container fluid>
+        <div className="card col-6" style={{margin: "0 auto"}}>
+          <h2>Plan a trip</h2>
 
-            <form className="form signup-form">
-              <div className="form-group">
-                {selectedDay && <p>Day: {selectedDay.toLocaleDateString()}</p>}
-                {!selectedDay && <p>Choose a day</p>}
-                <label htmlFor="day-trip">What Day?:</label>
-                <DayPickerInput id="day-trip" onDayChange={handleDayChange} />
-              </div>
-              <div className="form-group">
-                <label htmlFor="mountains-trip">What Mountain?:</label>
-                <select className="form-control" id="mountains-trip" name="mountains" onChange={handleMountain} >
-                  <option value="A-Basin">A-Basin</option>
-                  <option value="Aspen">Aspen</option>
-                  <option value="Breckenridge">Breckenridge</option>
-                  <option value="Copper Mountain">Copper Mountain</option>
-                  <option value="Crested Butte">Crested Butte</option>
-                  <option value="Eldora">Eldora</option>
-                  <option value="Keystone">Keystone</option>
-                  <option value="Loveland">Loveland</option>
-                  <option value="Steamboat">Steamboat</option>
-                  <option value="Telluride">Telluride</option>
-                  <option value="Vail">Vail</option>
-                </select>
-              </div>
-              <div className="form-group">
-                <button className="btn btn-secondary" type="submit" onClick={event => handleSubmit(event)} >Book</button>
-              </div>
-            </form>
-          </Col>
-        </Row>
+          <form className="form signup-form">
+            <div className="form-group">
+              <label htmlFor="day-trip">What Day?:</label>
+              <DayPickerInput id="day-trip" onDayChange={handleDayChange} />
+            </div>
+            <div className="form-group">
+              <label htmlFor="mountains-trip">What Mountain?:</label>
+              <select className="form-control" id="mountains-trip" name="mountains" onChange={handleMountain} >
+                <option value="A-Basin">A-Basin</option>
+                <option value="Aspen">Aspen</option>
+                <option value="Breckenridge">Breckenridge</option>
+                <option value="Copper Mountain">Copper Mountain</option>
+                <option value="Crested Butte">Crested Butte</option>
+                <option value="Eldora">Eldora</option>
+                <option value="Keystone">Keystone</option>
+                <option value="Loveland">Loveland</option>
+                <option value="Steamboat">Steamboat</option>
+                <option value="Telluride">Telluride</option>
+                <option value="Vail">Vail</option>
+              </select>
+            </div>
+            <div className="form-group">
+              <button className="btn btn-secondary" type="submit" onClick={event => handleSubmit(event)} >Book</button>
+            </div>
+          </form>
+        </div>
       </Container>
+    </div>
+
   )
 }
 

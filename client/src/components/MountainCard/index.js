@@ -4,9 +4,9 @@ function MountainCard(props) {
 
   return (
     <div className="container-fluid">
-      <h1>{props.city}</h1>
       <div className="row">
         {props.weatherArray.map((day, index) => {
+          let iconUrl = "http://openweathermap.org/img/wn/" + day.icon + "@2x.png"
           return (
             <div key={index} className="col-lg-2 col-md-3 col-sm-4">
               <div className="card">
@@ -15,6 +15,7 @@ function MountainCard(props) {
                   <p className="card-text">High: {day.high}</p>
                   <p className="card-text">Low: {day.low}</p>
                   <p className="card-text">{day.description}</p>
+                  <img src={iconUrl} alt="weather icon"></img>
                 </div>
               </div>
             </div>

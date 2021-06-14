@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Col, Row, Container } from "../components/Grid";
 import API from "../utils/API";
-import { Link, useHistory  } from "react-router-dom";
-import { DateUtils } from "react-day-picker";
+import { Link} from "react-router-dom";
 import MyVerticallyCenteredModal from "../components/MyVerticallyCenteredModal"
 
 function Profile( props) {
@@ -49,6 +48,7 @@ function Profile( props) {
   }, []);
 
   const handleCar = ((userProfile) => {
+    let carObj = {};
     console.log(userProfile.username)
     const username = userProfile.username
     API.findUserCar(username)
@@ -56,16 +56,16 @@ function Profile( props) {
         console.log(response)
         for (let i = 0; i < response.data.userCar.length; i++) {
           if (response.data.userCar[i].username === username) {
-            setCar({
+            carObj = {
               make: response.data.userCar[i].make,
               model: response.data.userCar[i].model,
               year: response.data.userCar[i].year,
               color: response.data.userCar[i].color,
               seats: response.data.userCar[i].seats
-            })
+            }
           }
         }
-
+        setCar(carObj)
       })
       .catch(err => {
         console.log(err)
@@ -95,13 +95,13 @@ function Profile( props) {
     API.joinTrip(event.target.value, profile.username)
       .then(response => {
         console.log(response)
-        window.location.reload();
+
       })
       .catch(err => {
         console.log(err)
         alert("You are already included on this trip")
       })
-
+      window.location.reload();
   }
 
   const handleCancel = (event) => {
@@ -114,6 +114,7 @@ function Profile( props) {
         console.log(err)
         alert("was unable to delete trip")
       })
+      window.location.reload();
   }
 
   const handleRemove = (event) => {
@@ -126,6 +127,7 @@ function Profile( props) {
         console.log(err)
         alert("Was unable to remove you from the trip")
       })
+      window.location.reload();
   }
 
   const handleModalDriver = (event) => {
@@ -204,7 +206,7 @@ function Profile( props) {
       />
       <Row>
         <Col size="6">
-          <img src="profile-image.png" />
+          <img src="profile-image.png" alt="placeholder" />
         </Col>
         <Col size="6">
           <div className="card">
@@ -249,66 +251,85 @@ function Profile( props) {
               </ul>
             </div>
           </div>
-          <div className="card">
-            <div className="card-header">
-              User Trips
-            </div>
-            <div className="card-body">
-              <ul> <h5>Driving</h5>
-              {allTrips.map((trip, index) => {
-                const formatDate = new Date(trip.date);
-                const correctDate = formatDate.toLocaleDateString();
-                let riders;
-                if (trip.passengers === null) {
-                  riders = "No Passengers"
-                } else  if (trip.passengers.length === 0) {
-                  riders = "No Passengers"
-                } else {
-                  riders = trip.passengers;
-                }
-                if (trip.driver === profile.username) {
-                  return (
-                    <div key={index}>
-                      <li>{trip.driver}, {trip.mountain}, {correctDate}, Available Seats {trip.seats}</li>
-                      <ul>
-                      {riders.map((rider, index) => {
-                        return(
-                          <li key={index}>{rider}</li>
-                        )
-                      })}
-                      </ul>
-                      <button value={trip._id} className="btn btn-secondary" onClick={handleCancel}>Cancel Trip</button>
-                    </div>
-                  )
-                }
-              })}
-              </ul>
-              <ul><h5>Passenger</h5>
-              {allTrips.map((trip, index) => {
-                const formatDate = new Date(trip.date);
-                const correctDate = formatDate.toLocaleDateString();
 
-                let riders = trip.passengers;
-                if (trip.passengers.includes(profile.username)) {
-                  return (
-                    <div key={index}>
-                      <li>{trip.driver}, {trip.mountain}, {correctDate}, Available Seats {trip.seats}</li>
-                      <ul>
-                      {riders.map((rider, index) => {
-                        return(
-                          <li key={index}>{rider}</li>
-                        )
-                      })}
-                      </ul>
-                      <button value={trip._id} className="btn btn-secondary" onClick={handleRemove}>Remove from Ride</button>
-                    </div>
-                  )
-                }
-              })}
-              </ul>
-            </div>
-          </div>
+
         </Col>
+      </Row>
+      <Row>
+          <div className="card-title user-trips">
+            User Trips:
+            <br></br>
+            <Link id="user-book" to="/day">Book a trip</Link>
+          </div>
+          <Col size="6">
+            <div className="card mx-auto" id="driving-trips">
+              <div className="card-header">
+                Driving
+              </div>
+              <div className="card-body">
+                <ul className="list-group list-group-flush">
+                {allTrips.map((trip, index) => {
+                  const formatDate = new Date(trip.date);
+                  const correctDate = formatDate.toLocaleDateString();
+                  let riders;
+                  if (trip.passengers === null) {
+                    riders = "No Passengers"
+                  } else  if (trip.passengers.length === 0) {
+                    riders = "No Passengers"
+                  } else {
+                    riders = trip.passengers;
+                  }
+                  if (trip.driver === profile.username) {
+                    return (
+                      <div key={index}>
+                        <li><strong>{trip.driver}</strong>, <em><u>{trip.mountain}</u></em>, {correctDate}, Available Seats: {trip.seats}</li>
+                        <ul>
+                        {riders.map((rider, index) => {
+                          return(
+                            <li key={index}>{rider}</li>
+                          )
+                        })}
+                        </ul>
+                        <button value={trip._id} className="btn btn-secondary trip-btn" onClick={handleCancel}>Cancel Trip</button>
+                      </div>
+                    )
+                  }
+                })}
+                </ul>
+              </div>
+            </div>
+          </Col>
+          <Col size="6">
+            <div className="card mx-auto" id="passenger-trips">
+              <div className="card-header">
+                Passenger
+              </div>
+              <div className="card-body">
+                <ul className="list-group list-group-flush">
+                {allTrips.map((trip, index) => {
+                  const formatDate = new Date(trip.date);
+                  const correctDate = formatDate.toLocaleDateString();
+                  let riders = trip.passengers;
+                  if (trip.passengers.includes(profile.username)) {
+                    return (
+                      <div key={index}>
+                        <li><strong>{trip.driver}</strong>, <em><u>{trip.mountain}</u></em>, {correctDate}, Available Seats: {trip.seats}</li>
+                        <ul>
+                        {riders.map((rider, index) => {
+                          return(
+                            <li key={index}>{rider}</li>
+                          )
+                        })}
+                        </ul>
+                        <button value={trip._id} className="btn btn-secondary trip-btn" onClick={handleRemove}>Remove from Ride</button>
+                      </div>
+                    )
+                  }
+                })}
+                </ul>
+              </div>
+            </div>
+          </Col>
       </Row>
       <Row>
         <Col size="6">
@@ -362,7 +383,7 @@ function Profile( props) {
                   }
                   return(
                     <div key={index}>
-                      <li>{trip.driver}, {trip.mountain}, {correctDate}, Available Seats {trip.seats}</li>
+                      <li><strong>{trip.driver}</strong>, <em><u>{trip.mountain}</u></em>, {correctDate}, Available Seats {trip.seats}</li>
 
                       <ul>
                       {riders.map((rider, index) => {
@@ -371,8 +392,8 @@ function Profile( props) {
                         )
                       })}
                       </ul>
-                      <button value={trip._id} className="btn btn-secondary" onClick={handleJoin}>Join trip</button>
-                      <button value={trip.driver} className="btn btn-secondary" onClick={handleModalDriver}>View Driver Information</button>
+                      <button value={trip._id} className="btn btn-secondary trip-btn" onClick={handleJoin}>Join trip</button>
+                      <button value={trip.driver} className="btn btn-secondary trip-btn" onClick={handleModalDriver}>View Driver Information</button>
                     </div>
                   )
                 })}

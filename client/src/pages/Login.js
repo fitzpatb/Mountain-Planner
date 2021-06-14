@@ -1,5 +1,5 @@
-import React, { useRef, useState, useEffect } from "react";
-import { Col, Row, Container } from "../components/Grid";
+import React, { useRef, useEffect } from "react";
+import { Container } from "../components/Grid";
 import { Link, Redirect } from "react-router-dom";
 import API from "../utils/API";
 
@@ -56,9 +56,9 @@ function Login(props) {
     )
   } else {
     return (
-      <Container fluid>
-        <Row>
-          <Col size="md-10" className="rounded border border-secondary">
+      <div className="margin-pages">
+        <Container fluid>
+          <div className="card col-6" style={{margin: "0 auto"}} >
             <h2>Login</h2>
 
             <form className="form login-form">
@@ -75,9 +75,10 @@ function Login(props) {
                 <Link className="btn btn-secondary" to="/signup">Signup</Link>
               </div>
             </form>
-          </Col>
-        </Row>
-      </Container>
+          </div>
+        </Container>
+      </div>
+
     )
   }
 }

@@ -16,12 +16,6 @@ function App() {
   const [lon, setLon] = useState("");
   const [city, setCity] = useState("")
   const [loggedIn, setLoggedIn] = useState();
-  const [userInfo, setUserInfo] = useState({
-    firstname: "",
-    lastname: "",
-    username: "",
-    email: "",
-  });
 
   useEffect(() => {
     const userProfile = JSON.parse(localStorage.getItem("currentUser"));
@@ -86,6 +80,7 @@ function App() {
               lat={lat}
               lon={lon}
               city={city}
+              loggedIn={loggedIn}
               resetCity={resetCity}
             />
           </Route>
