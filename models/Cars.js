@@ -30,6 +30,6 @@ const carSchema = new Schema({
 })
 
 
-const Cars = mongoose.model("Car", carSchema);
+const Cars = mongoose.model("Cars", carSchema);
 
 module.exports = Cars;
