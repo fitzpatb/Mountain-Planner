@@ -322,7 +322,7 @@ function Profile( props) {
                           )
                         })}
                         </ul>
-                        <button value={trip._id} className="btn btn-secondary trip-btn" onClick={handleRemove}>Remove from Ride</button>
+                        <button value={trip._id} className="btn btn-secondary trip-btn" onClick={handleRemove} refresh="true">Remove from Ride</button>
                       </div>
                     )
                   }

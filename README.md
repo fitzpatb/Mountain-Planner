@@ -4,23 +4,23 @@
 ## Description
 Plan or join carpool rides to your favorite colorado resorts.
 
-![photo](./src/client/Assets/images/homepage.png)
+![photo](./client/src/Assets/images/homepage.png)
 
-![photo](./src/client/Assets/images/signup.png)
+![photo](./client/src/Assets/images/signup.png)
 
-![photo](./src/client/Assets/images/carsignup.png)
+![photo](./client/src/Assets/images/carsignup.png)
 
-![photo](./src/client/Assets/images/login.png)
+![photo](./client/src/Assets/images/login.png)
 
-![photo](./src/client/Assets/images/logout.png)
+![photo](./client/src/Assets/images/logout.png)
 
-![photo](./src/client/Assets/images/profile.png)
+![photo](.client/src/Assets/images/profile.png)
 
-![photo](./src/client/Assets/images/profile2.png)
+![photo](.client/src/Assets/images/profile2.png)
 
-![photo](./src/client/Assets/images/daybook.png)
+![photo](.client/src/Assets/images/daybook.png)
 
-![photo](./src/client/Assets/images/mountain.png)
+![photo](.client/src/Assets/images/mountain.png)
 
 
 [link](https://secure-fortress-31998.herokuapp.com/)

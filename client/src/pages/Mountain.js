@@ -95,9 +95,9 @@ function Mountain(props) {
 
                   let riders;
                   if (trip.passengers === null) {
-                    riders = "No Passengers"
+                    riders = ["No Passengers"]
                   } else  if (trip.passengers.length === 0) {
-                    riders = "No Passengers"
+                    riders = ["No Passengers"]
                   } else {
                     riders = trip.passengers;
                   }
