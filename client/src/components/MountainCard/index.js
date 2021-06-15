@@ -8,7 +8,7 @@ function MountainCard(props) {
         {props.weatherArray.map((day, index) => {
           let iconUrl = "http://openweathermap.org/img/wn/" + day.icon + "@2x.png"
           return (
-            <div key={index} className="col-lg-2 col-md-3 col-sm-4">
+            <div key={index} className="col-lg-1.5 col-md-3 col-sm-4">
               <div className="card">
                 <div className="card-body">
                   <h5 className="card-title">{day.calendarDate}</h5>

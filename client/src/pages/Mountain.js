@@ -79,8 +79,8 @@ function Mountain(props) {
 
   return (
     <div className="margin-pages">
-      <Container fluid>
-        <div className="card" style={{margin: "0 auto"}} >
+      <Container fluid >
+        <div className="card" style={{margin: "0 auto", width: "80%"}}>
           <h1>{props.city}</h1>
           <div className="card">
               <div className="card-header">
@@ -134,7 +134,7 @@ function Mountain(props) {
             </h1>
           </Row>
           <Row>
-            <Col size="md-10 md-offset-1">
+            <Col size="md-10">
               <MountainCard
                 city={city}
                 hourlyWeather={hourlyWeather}

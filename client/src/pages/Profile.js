@@ -45,13 +45,14 @@ function Profile( props) {
     });
     handleCar(userProfile);
     handleTrips();
+    console.log(allTrips);
   }, []);
 
-  const handleCar = ((userProfile) => {
+  const handleCar = ( async (userProfile) => {
     let carObj = {};
     console.log(userProfile.username)
     const username = userProfile.username
-    API.findUserCar(username)
+    await API.findUserCar(username)
       .then(response => {
         console.log(response)
         for (let i = 0; i < response.data.userCar.length; i++) {
@@ -72,9 +73,9 @@ function Profile( props) {
       })
   })
 
-  const handleTrips = () => {
+  const handleTrips = async () => {
     let tripsArray = [];
-    API.findAllTrips()
+    await API.findAllTrips()
       .then(response => {
         console.log(response);
         const format = new Date(response.data.trips[0].date);
@@ -273,9 +274,9 @@ function Profile( props) {
                   const correctDate = formatDate.toLocaleDateString();
                   let riders;
                   if (trip.passengers === null) {
-                    riders = "No Passengers"
+                    riders = ["No Passengers"]
                   } else  if (trip.passengers.length === 0) {
-                    riders = "No Passengers"
+                    riders = ["No Passengers"]
                   } else {
                     riders = trip.passengers;
                   }
@@ -375,16 +376,15 @@ function Profile( props) {
 
                   let riders;
                   if (trip.passengers === null) {
-                    riders = "No Passengers"
+                    riders = ["No Passengers"]
                   } else  if (trip.passengers.length === 0) {
-                    riders = "No Passengers"
+                    riders = ["No Passengers"]
                   } else {
                     riders = trip.passengers;
                   }
                   return(
                     <div key={index}>
                       <li><strong>{trip.driver}</strong>, <em><u>{trip.mountain}</u></em>, {correctDate}, Available Seats {trip.seats}</li>
-
                       <ul>
                       {riders.map((rider, index) => {
                         return(
