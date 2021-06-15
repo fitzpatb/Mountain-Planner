@@ -14,11 +14,11 @@ Plan or join carpool rides to your favorite colorado resorts.
 
 ![photo](./client/src/Assets/images/logout.png)
 
-![photo](.client/src/Assets/images/profile.png)
+![photo](./client/src/Assets/images/profile.png)
 
-![photo](.client/src/Assets/images/profile2.png)
+![photo](./client/src/Assets/images/profile2.png)
 
-![photo](.client/src/Assets/images/daybook.png)
+![photo](./client/src/Assets/images/daybook.png)
 
 ![photo](.client/src/Assets/images/mountain.png)
 
