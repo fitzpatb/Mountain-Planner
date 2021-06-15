@@ -20,7 +20,9 @@ Plan or join carpool rides to your favorite colorado resorts.
 
 ![photo](./client/src/Assets/images/daybook.png)
 
-![photo](.client/src/Assets/images/mountain.png)
+![photo](./client/src/Assets/images/mountain.png)
+
+[video](https://vimeo.com/manage/videos/563439857)
 
 
 [link](https://secure-fortress-31998.herokuapp.com/)
