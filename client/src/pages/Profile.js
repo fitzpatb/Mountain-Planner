@@ -72,9 +72,9 @@ function Profile( props) {
       })
   })
 
-  const handleTrips = (async () => {
+  const handleTrips = () => {
     let tripsArray = [];
-    await API.findAllTrips()
+    API.findAllTrips()
       .then(response => {
         console.log(response);
         const format = new Date(response.data.trips[0].date);
@@ -87,7 +87,7 @@ function Profile( props) {
       .catch(err => {
         console.log(err)
       })
-  })
+  }
 
   const handleJoin = (event) => {
     console.log(event.target.value);
