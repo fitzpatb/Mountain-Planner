@@ -102,7 +102,7 @@ function Profile( props) {
         console.log(err)
         alert("You are already included on this trip")
       })
-      window.location.reload();
+      window.location.reload(true);
   }
 
   const handleCancel = (event) => {
@@ -115,7 +115,7 @@ function Profile( props) {
         console.log(err)
         alert("was unable to delete trip")
       })
-      window.location.reload();
+      window.location.reload(true);
   }
 
   const handleRemove = (event) => {
@@ -128,7 +128,7 @@ function Profile( props) {
         console.log(err)
         alert("Was unable to remove you from the trip")
       })
-      window.location.reload();
+      window.location.reload(true);
   }
 
   const handleModalDriver = (event) => {
